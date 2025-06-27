@@ -6,6 +6,7 @@
 #include "RenderWindow.hpp"
 #include "Entity.hpp"
 #include "Utils.hpp"
+#include "Math.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -23,24 +24,19 @@ int main(int argc, char *argv[])
 
     SDL_Texture *grassTexture = window.loadTexture("res/gfx/grass.png");
 
-    // Entity entities[4] = {
-    //     Entity(0, 0, grassTexture),
-    //     Entity(16, 0, grassTexture),
-    //     Entity(32, 0, grassTexture),
-    //     Entity(46, 0, grassTexture),
-    // };
 
     std::vector<Entity> entitiees = {
-        Entity(Vector2f(0, 0), grassTexture),
-        Entity(Vector2f(32, 0), grassTexture),
-        Entity(Vector2f(32, 0), grassTexture),
-        Entity(Vector2f(32, 0), grassTexture),
+        Entity(Vector2f(0,0), grassTexture),
     };
 
     {
-        Entity danheng(Vector2f(100, 50), grassTexture);
+        Entity anotherGrass0(Vector2f(50, 50), grassTexture);
+        Entity anotherGrass1(Vector2f(100, 50), grassTexture);
+        Entity anotherGrass2(Vector2f(150, 50), grassTexture);
 
-        entitiees.push_back(danheng);
+        entitiees.push_back(anotherGrass0);
+        entitiees.push_back(anotherGrass1);
+        entitiees.push_back(anotherGrass2);
     }
 
     bool gameRunning = true;
