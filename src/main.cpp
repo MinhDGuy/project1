@@ -20,23 +20,18 @@ int main(int argc, char *argv[])
         std::cout << "IMG_Init Has Failed. SDL_ERROR: " << IMG_GetError() << std::endl;
     }
 
-    RenderWindow window("GAME v1.0", 1280, 720);
+    RenderWindow window("GAME v1.0", 1600, 900);
 
     SDL_Texture *grassTexture = window.loadTexture("res/gfx/grass.png");
 
-
     std::vector<Entity> entitiees = {
-        Entity(Vector2f(0,0), grassTexture),
+        Entity(Vector2f(0, 0), grassTexture),
     };
 
     {
-        Entity anotherGrass0(Vector2f(50, 50), grassTexture);
-        Entity anotherGrass1(Vector2f(100, 50), grassTexture);
-        Entity anotherGrass2(Vector2f(150, 50), grassTexture);
+        Entity player(Vector2f(50, 50), grassTexture);
 
-        entitiees.push_back(anotherGrass0);
-        entitiees.push_back(anotherGrass1);
-        entitiees.push_back(anotherGrass2);
+        entitiees.push_back(player);
     }
 
     bool gameRunning = true;
@@ -68,12 +63,10 @@ int main(int argc, char *argv[])
                     gameRunning = false;
                 }
             }
-
             accumulator -= timeStep;
-
         }
 
-        const float alpha = accumulator / timeStep; //50%?
+        const float alpha = accumulator / timeStep; // 50%?
 
         window.clear();
 
@@ -84,12 +77,12 @@ int main(int argc, char *argv[])
 
         window.display();
 
-        int frameTicks = SDL_GetTicks () - startTicks;
+        int frameTicks = SDL_GetTicks() - startTicks;
 
-        if(frameTicks < 1000 / window.getRefreshRate()){
+        if (frameTicks < 1000 / window.getRefreshRate())
+        {
             SDL_Delay(window.getRefreshRate() - frameTicks);
         }
-
     }
 
     window.cleanUp();
